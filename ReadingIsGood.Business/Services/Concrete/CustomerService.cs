@@ -2,6 +2,7 @@
 using ReadingIsGood.Business.Services.Interface;
 using ReadingIsGood.Core.DTOs;
 using ReadingIsGood.Core.Entities;
+using ReadingIsGood.Core.Models;
 using ReadingIsGood.Core.Models.Requests;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace ReadingIsGood.Business.Services.Concrete
         {
         }
 
-        public async Task<CustomerDTO> Insert(CustomerRequest customerRequest)
+        public async Task<Response<CustomerDTO>> Insert(CustomerRequest customerRequest)
         {
             var customerData = new Customer()
             {
@@ -27,7 +28,16 @@ namespace ReadingIsGood.Business.Services.Concrete
 
             var customer = await UnitOfWork.Repository<Customer>().AddAsync(customerData);
 
-            return Mapper.Map<CustomerDTO>(customer);
+            return new Response<CustomerDTO>(Mapper.Map<CustomerDTO>(customer));
+        }
+
+
+        public async Task<Response<IEnumerable<OrderDTO>>> GetOrders(CustomerOrderRequest request)
+        {
+            var orders = UnitOfWork.Repository<Order>()
+                .Filter(p => p.CustomerId == request.CustomerId,null,null, request.Page, request.PageSize);   
+
+            return new Response<IEnumerable<OrderDTO>> (Mapper.Map<IEnumerable<OrderDTO>>(orders));
         }
     }
 }

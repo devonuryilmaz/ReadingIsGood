@@ -18,6 +18,12 @@ namespace ReadingIsGood.Core.Mapping
             
             CreateMap<Customer, CustomerDTO>();
             CreateMap<CustomerDTO, Customer>();
+            
+            CreateMap<Book, BookDTO>();
+            CreateMap<BookDTO, Book>();
+
+            CreateMap<Order, OrderDTO>();
+            CreateMap<OrderDTO, Order>();
         }
     }
 }

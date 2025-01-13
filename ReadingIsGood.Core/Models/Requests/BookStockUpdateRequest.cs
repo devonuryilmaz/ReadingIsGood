@@ -7,15 +7,12 @@ using System.Threading.Tasks;
 
 namespace ReadingIsGood.Core.Models.Requests
 {
-    public class BookRequest
+    public class BookStockUpdateRequest
     {
         [Required]
-        public string Name { get; set; }
+        public int BookId { get; set; }
 
         [Required]
         public int Quantity { get; set; }
-        
-        [Required]
-        public decimal Price { get; set; }
     }
 }

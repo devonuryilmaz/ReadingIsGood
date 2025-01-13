@@ -116,8 +116,6 @@ namespace ReadingIsGood.Business.Services.Concrete
                     ValidateAudience = true,
                     ValidIssuer = "readingisgood",
                     ValidAudience = "readingisgood",
-                    // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
-                    ClockSkew = TimeSpan.Zero
                 }, out SecurityToken validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;

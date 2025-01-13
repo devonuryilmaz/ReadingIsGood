@@ -10,17 +10,19 @@ namespace ReadingIsGood.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class BookController : ControllerBase
+
+    public class OrderController : ControllerBase
     {
-        private readonly IBookService _bookService;
-        public BookController(IBookService bookService)
+        private readonly IOrderService _orderService;
+
+        public OrderController(IOrderService orderService)
         {
-            _bookService = bookService;
+            _orderService = orderService;
         }
 
         [HttpPost("Insert")]
         [Produces("application/json")]
-        public async Task<ActionResult<Response>> Insert([FromBody] BookRequest request)
+        public async Task<ActionResult<Response>> Insert([FromBody] OrderRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -39,7 +41,7 @@ namespace ReadingIsGood.API.Controllers
 
             try
             {
-                return Ok(await _bookService.Insert(request));
+                return Ok(await _orderService.Insert(request));
             }
             catch (Exception ex)
             {
@@ -49,30 +51,14 @@ namespace ReadingIsGood.API.Controllers
             }
         }
 
-        [HttpPost("UpdateStock")]
+
+        [HttpGet("GetOrders")]
         [Produces("application/json")]
-        public async Task<ActionResult<Response>> UpdateStock([FromBody] BookStockUpdateRequest request)
+        public async Task<ActionResult<Response>> GetOrders()
         {
-            if (!ModelState.IsValid)
-            {
-                var apiResponse = new Response(false);
-
-                foreach (var errorMessage in ModelState.Where(ms => ms.Value.Errors.Any()).Select(x => new { x.Key, x.Value.Errors }))
-                {
-                    apiResponse.Errors.Add(new Error()
-                    {
-                        ErrorMessage = string.Concat(errorMessage.Key, "->", errorMessage.Errors.FirstOrDefault().ErrorMessage)
-                    });
-
-                }
-                return BadRequest(apiResponse);
-            }
-
             try
             {
-                var result = await _bookService.UpdateStock(request);
-
-                return Ok(result);
+                return Ok(await _orderService.ListOrderById());
             }
             catch (Exception ex)
             {

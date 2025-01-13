@@ -49,6 +49,38 @@ namespace ReadingIsGood.API.Controllers
                 return StatusCode(500, response);
             }
         }
+
+
+        [HttpPost("GetOrders")]
+        [Produces("application/json")]
+        public async Task<ActionResult<Response>> GetOrders([FromBody] CustomerOrderRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                var apiResponse = new Response(false);
+
+                foreach (var errorMessage in ModelState.Where(ms => ms.Value.Errors.Any()).Select(x => new { x.Key, x.Value.Errors }))
+                {
+                    apiResponse.Errors.Add(new Error()
+                    {
+                        ErrorMessage = string.Concat(errorMessage.Key, "->", errorMessage.Errors.FirstOrDefault().ErrorMessage)
+                    });
+
+                }
+                return BadRequest(apiResponse);
+            }
+
+            try
+            {
+                return Ok(await _customerService.GetOrders(request));
+            }
+            catch (Exception ex)
+            {
+                var response = new Response(false);
+                response.Errors.Add(new Error { ErrorMessage = ex.Message });
+                return StatusCode(500, response);
+            }
+        }
     }
 }
     

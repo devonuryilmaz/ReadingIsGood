@@ -1,15 +1,12 @@
 ﻿using ReadingIsGood.Core.DTOs;
+using ReadingIsGood.Core.Models;
 using ReadingIsGood.Core.Models.Requests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReadingIsGood.Business.Services.Interface
 {
     public interface IBookService
     {
-        public Task<BookDTO> Insert(BookRequest request);
+        public Task<Response<BookDTO>> Insert(BookRequest request);
+        public Task<Response<BookDTO>> UpdateStock(BookStockUpdateRequest request);
     }
 }

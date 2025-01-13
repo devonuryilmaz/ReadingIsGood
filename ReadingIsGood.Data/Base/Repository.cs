@@ -1,12 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ReadingIsGood.Core.Entities;
 using ReadingIsGood.Data.BaseContext;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReadingIsGood.Data.Base
 {
@@ -154,9 +149,7 @@ namespace ReadingIsGood.Data.Base
             {
                 return null;
             }
-            //var orginalRecord = await GetByIdAsync(entity.ID);
-            //if (orginalRecord != null && orginalRecord.RowGuid.Equals(entity.RowGuid) && orginalRecord.ID == entity.ID)
-            //{
+
             FillEntity(entity);
             _context.Entry(entity).State = EntityState.Modified;
             _context.Set<T>().Attach(entity);
@@ -164,27 +157,16 @@ namespace ReadingIsGood.Data.Base
             _context.SaveChanges();
             await _unitOfWork.Commit();
             return entity;
-            //}
-            //return null;
         }
 
         public void UpdateAll(IEnumerable<T> entities)
         {
-            //bool isAvaible =true; 
             entities.ToList().ForEach(entity =>
             {
-                //var orginalRecord = GetById(entity.ID);
-                //if (orginalRecord != null && orginalRecord.RowGuid.Equals(entity.RowGuid) && orginalRecord.ID == entity.ID)
-                //{
-                //    isAvaible = false; 
-                //}
                 FillEntity(entity);
             });
-            //if (isAvaible)
-            //{
             _context.Set<T>().UpdateRange(entities);
             _context.SaveChanges();
-            //}
         }
 
         #endregion Update
@@ -301,11 +283,6 @@ namespace ReadingIsGood.Data.Base
 
         private void FillEntity(T entity, bool insertMode = false)
         {
-            /*
-                Mobil uygulamadaki offline calismadan oturu veriler daha sonra gonderilebilir 
-                bu duruda son guncelleme tarihinin degistirilmemesi gerekmekdedir.  
-            */
-
             entity.ModifiedBy = _unitOfWork?.User == null ? null : _unitOfWork.User.ID;
             entity.ModifyDate = DateTime.Now;
 

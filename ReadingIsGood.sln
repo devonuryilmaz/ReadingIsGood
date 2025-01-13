@@ -3,13 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingIsGood.API", "ReadingIsGood\ReadingIsGood.API.csproj", "{96B434DD-ECEF-4B8C-964D-E7F001B74545}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadingIsGood.API", "ReadingIsGood\ReadingIsGood.API.csproj", "{96B434DD-ECEF-4B8C-964D-E7F001B74545}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingIsGood.Data", "ReadingIsGood.Data\ReadingIsGood.Data.csproj", "{55045744-704B-4EB1-9C8C-A374462C454D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadingIsGood.Data", "ReadingIsGood.Data\ReadingIsGood.Data.csproj", "{55045744-704B-4EB1-9C8C-A374462C454D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingIsGood.Core", "ReadingIsGood.Core\ReadingIsGood.Core.csproj", "{0FEDD1AF-4E7A-4807-84CE-723AAADE7B72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadingIsGood.Core", "ReadingIsGood.Core\ReadingIsGood.Core.csproj", "{0FEDD1AF-4E7A-4807-84CE-723AAADE7B72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingIsGood.Business", "ReadingIsGood.Business\ReadingIsGood.Business.csproj", "{FE2FFC29-7B85-445B-A59E-3B1E461F1F66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadingIsGood.Business", "ReadingIsGood.Business\ReadingIsGood.Business.csproj", "{FE2FFC29-7B85-445B-A59E-3B1E461F1F66}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D9EE169E-F07C-46FF-98DE-D8452FB3C7B3}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

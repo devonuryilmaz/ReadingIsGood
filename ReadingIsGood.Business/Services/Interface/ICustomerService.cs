@@ -1,15 +1,14 @@
-﻿using ReadingIsGood.Core.DTOs;
+﻿using ReadingIsGood.Business.Base.Interface;
+using ReadingIsGood.Core.DTOs;
+using ReadingIsGood.Core.Entities;
+using ReadingIsGood.Core.Models;
 using ReadingIsGood.Core.Models.Requests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReadingIsGood.Business.Services.Interface
 {
-    public interface ICustomerService
-    {
-        public Task<CustomerDTO> Insert(CustomerRequest customer);
+    public interface ICustomerService : IBaseService<Customer, CustomerDTO>
+    { 
+        public Task<Response<CustomerDTO>> Insert(CustomerRequest customer);
+        public Task<Response<IEnumerable<OrderDTO>>> GetOrders(CustomerOrderRequest request);
     }
 }

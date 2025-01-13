@@ -11,9 +11,9 @@ namespace ReadingIsGood.Core.DTOs.Base
         public long? ID { get; set; }
         public bool Deleted { get; set; }
         public bool IsActive { get; set; }
-        public long CreatedUserID { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public long ModifiedUserID { get; set; }
-        public DateTime ModifiedOn { get; set; }
+        public long? CreatedBy { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public long? ModifiedBy { get; set; }
+        public DateTime? ModifiedOn { get; set; }
     }
 }
